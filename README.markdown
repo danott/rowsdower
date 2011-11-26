@@ -8,6 +8,8 @@ Add some zap to any page on the internet.
 
 ## Bookmarklet Version
 
-There is a bookmarklet version. The link cannot be placed in the GitHub Readme, so a alternative source will come soon.
+There is also a bookmarklet version.
 
     <a href='javascript:var rowsdowered,rowsdowerize;rowsdowered=!1;rowsdowerize=function(){var a,b;if(rowsdowered)return;a=document.getElementsByTagName("head")[0];b=document.createElement("script");b.src="https://raw.github.com/danott/rowsdower/master/min/rowsdower.js";a.appendChild(b);return rowsdowered=!0};rowsdowerize();'>Rowdower!</a>
+
+A draggable link can be found [here](http://danott.us/notes/show/rowsdower).
