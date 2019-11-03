@@ -1,10 +1,25 @@
 {
   "name": "rowsdower",
-  "version": "1.0.0",
+  "version": "1.0.4-3",
   "description": "Zap any page on the internet",
-  "main": "index.js",
   "repository": "https://github.com/danott/rowsdower",
   "author": "@danott",
   "license": "MIT",
-  "private": false
+  "private": false,
+  "source": "index.js",
+  "main": "dist/rowsdower.js",
+  "module": "dist/rowsdower.mjs",
+  "unpkg": "dist/rowsdower.umd.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "microbundle",
+    "dev": "microbundle watch",
+    "prepublish": "microbundle"
+  },
+  "devDependencies": {
+    "microbundle": "^0.11.0"
+  },
+  "dependencies": {}
 }
