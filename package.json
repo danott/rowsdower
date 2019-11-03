@@ -1,0 +1,10 @@
+{
+  "name": "rowsdower",
+  "version": "1.0.0",
+  "description": "Zap any page on the internet",
+  "main": "index.js",
+  "repository": "https://github.com/danott/rowsdower",
+  "author": "@danott",
+  "license": "MIT",
+  "private": false
+}
