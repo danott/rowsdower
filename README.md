@@ -120,4 +120,4 @@ npm run docs   # preview the docs at http://localhost:8000
 Edit `rowsdower.js`, then run `npm run build`.
 The tests fail if the two are out of sync.
 
-The docs in `docs/` deploy to GitHub Pages on every push to `master`.
+The docs in `docs/` deploy to GitHub Pages on every push to `main`.
