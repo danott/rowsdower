@@ -34,30 +34,10 @@ test("the global mounts to document.body and cleans up", () => {
   const cleanup = page.window.rowsdower()
 
   const [chairs] = page.document.body.children
-  assert.ok(chairs.hasAttribute("data-rowsdower-chairs"))
-  assert.ok(chairs.children[0].hasAttribute("data-rowsdower-crew"))
+  assert.ok("rowsdowerChairs" in chairs.dataset)
+  assert.ok("rowsdowerCrew" in chairs.children[0].dataset)
 
   cleanup()
   cleanup()
   assert.equal(page.document.body.children.length, 0)
-})
-
-test("the function body sticks to ES5 syntax", () => {
-  const code = committed
-    .replace(/"(?:[^"\\\n]|\\.)*"/g, '""') // strings first: the base64 data can contain "//"
-    .replace(/\/\*[\s\S]*?\*\//g, "")
-    .replace(/\/\/.*$/gm, "")
-
-  const modern = {
-    "arrow function": /=>/,
-    "template literal": /`/,
-    "let or const": /\b(let|const)\s/,
-    "optional chaining": /\?\./,
-    "spread or rest": /\.\.\./,
-    class: /\bclass\b/,
-    "trailing comma (a syntax error in IE8)": /,\s*[}\]]/,
-  }
-  for (const [name, pattern] of Object.entries(modern)) {
-    assert.doesNotMatch(code, pattern, `found ES2015+ syntax: ${name}`)
-  }
 })

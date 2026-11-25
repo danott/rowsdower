@@ -24,7 +24,7 @@ See it in action at **[danott.github.io/rowsdower](https://danott.github.io/rows
 
 ### Plain old script tag
 
-Like it's the good old days. [`rowsdower.global.js`](rowsdower.global.js) sets a global `rowsdower` and runs all the way back to IE8.
+Like it's the good old days. [`rowsdower.global.js`](rowsdower.global.js) sets a global `rowsdower`.
 Load it from a CDN, or download it and vendor it.
 
 ```html
@@ -117,7 +117,7 @@ npm run docs   # preview the docs at http://localhost:8000
 ```
 
 `rowsdower.global.js` is generated, but committed so it can be vendored straight from GitHub.
-Edit `rowsdower.js` (keeping to ES5 syntax inside the function), then run `npm run build`.
+Edit `rowsdower.js`, then run `npm run build`.
 The tests fail if the two are out of sync.
 
 The docs in `docs/` deploy to GitHub Pages on every push to `master`.

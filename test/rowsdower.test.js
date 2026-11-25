@@ -21,24 +21,24 @@ test("mounts the chairs and crew to document.body by default", () => {
   const [chairs] = document.body.children
   assert.equal(document.body.children.length, 1)
   assert.equal(chairs.tagName, "DIV")
-  assert.ok(chairs.hasAttribute("data-rowsdower-chairs"))
+  assert.ok("rowsdowerChairs" in chairs.dataset)
 
   const [crew] = chairs.children
   assert.equal(crew.tagName, "IMG")
-  assert.ok(crew.hasAttribute("data-rowsdower-crew"))
-  assert.match(crew.getAttribute("src"), pngDataUri)
-  assert.equal(crew.getAttribute("alt"), "")
+  assert.ok("rowsdowerCrew" in crew.dataset)
+  assert.match(crew.src, pngDataUri)
+  assert.equal(crew.alt, "")
 })
 
 test("mounts to a given target", () => {
   const target = document.createElement("div")
-  document.body.appendChild(target)
+  document.body.append(target)
 
   rowsdower(target)
 
   assert.equal(document.body.children.length, 1)
   assert.equal(target.children.length, 1)
-  assert.ok(target.children[0].hasAttribute("data-rowsdower-chairs"))
+  assert.ok("rowsdowerChairs" in target.children[0].dataset)
 })
 
 test("creates elements with the target's own document", () => {
@@ -59,7 +59,7 @@ test("pins the theater to the bottom right of the viewport", () => {
   assert.equal(chairs.style.position, "fixed")
   assert.equal(chairs.style.bottom, "0")
   assert.equal(chairs.style.right, "0")
-  assert.match(chairs.style.backgroundImage, /^url\(data:image\/png;base64,/)
+  assert.match(chairs.style.background, /^url\(data:image\/png;base64,.*\) repeat-x bottom right$/)
   assert.equal(chairs.style.pointerEvents, "none")
   assert.equal(crew.style.position, "fixed")
   assert.ok(Number(crew.style.zIndex) > Number(chairs.style.zIndex))
@@ -105,9 +105,9 @@ test("images are inline PNG data URIs", () => {
 
   const [chairs] = document.body.children
   const [crew] = chairs.children
-  const chairSrc = chairs.style.backgroundImage.slice("url(".length, -")".length)
+  const chairSrc = chairs.style.background.match(/^url\((.*)\)/)[1]
 
-  for (const src of [chairSrc, crew.getAttribute("src")]) {
+  for (const src of [chairSrc, crew.src]) {
     assert.match(src, pngDataUri)
     const bytes = Buffer.from(src.split(",")[1], "base64")
     assert.deepEqual([...bytes.subarray(1, 4)], [0x50, 0x4e, 0x47]) // "PNG"

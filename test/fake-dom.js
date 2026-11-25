@@ -3,32 +3,21 @@ export class FakeElement {
   constructor(tagName, ownerDocument) {
     this.tagName = tagName.toUpperCase()
     this.ownerDocument = ownerDocument
-    this.attributes = {}
+    this.dataset = {}
     this.style = {}
     this.children = []
     this.parentNode = null
   }
-  setAttribute(name, value) {
-    this.attributes[name] = String(value)
-  }
-  getAttribute(name) {
-    return name in this.attributes ? this.attributes[name] : null
-  }
-  hasAttribute(name) {
-    return name in this.attributes
-  }
-  appendChild(child) {
-    if (child.parentNode) child.parentNode.removeChild(child)
+  append(child) {
+    child.remove()
     child.parentNode = this
     this.children.push(child)
-    return child
   }
-  removeChild(child) {
-    const index = this.children.indexOf(child)
-    if (index === -1) throw new Error("NotFoundError: not a child of this element")
-    this.children.splice(index, 1)
-    child.parentNode = null
-    return child
+  remove() {
+    if (!this.parentNode) return
+    const siblings = this.parentNode.children
+    siblings.splice(siblings.indexOf(this), 1)
+    this.parentNode = null
   }
 }
 

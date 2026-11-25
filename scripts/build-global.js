@@ -1,5 +1,5 @@
 // Turn rowsdower.js (an ES module) into rowsdower.global.js (a classic script that sets window.rowsdower).
-// rowsdower.js is written in ES5 syntax apart from its export, so this is a text transform, not a compiler.
+// rowsdower.js has no imports, so this is a text transform: drop the exports and wrap it in a function.
 import { readFileSync, writeFileSync } from "node:fs"
 import { fileURLToPath } from "node:url"
 
