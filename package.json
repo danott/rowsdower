@@ -1,25 +1,35 @@
 {
   "name": "rowsdower",
-  "version": "2.0.1",
+  "version": "3000.0.0",
   "description": "Zap any page on the internet",
-  "repository": "https://github.com/danott/rowsdower",
+  "repository": "github:danott/rowsdower",
+  "homepage": "https://danott.github.io/rowsdower/",
   "author": "@danott",
   "license": "MIT",
-  "private": false,
-  "source": "index.js",
-  "main": "dist/rowsdower.js",
-  "module": "dist/rowsdower.mjs",
-  "unpkg": "dist/rowsdower.umd.js",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./rowsdower.d.ts",
+      "default": "./rowsdower.js"
+    }
+  },
+  "main": "./rowsdower.js",
+  "types": "./rowsdower.d.ts",
+  "unpkg": "./rowsdower.js",
+  "jsdelivr": "./rowsdower.js",
   "files": [
-    "dist"
+    "rowsdower.js",
+    "rowsdower.global.js",
+    "rowsdower.d.ts"
   ],
+  "sideEffects": false,
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
+  },
   "scripts": {
-    "build": "microbundle",
-    "dev": "microbundle watch",
-    "prepublish": "microbundle"
-  },
-  "devDependencies": {
-    "microbundle": "^0.11.0"
-  },
-  "dependencies": {}
+    "test": "node --test test/*.test.js",
+    "build": "node scripts/build-global.js",
+    "prepack": "node scripts/build-global.js",
+    "docs": "node scripts/serve-docs.js"
+  }
 }

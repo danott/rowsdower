@@ -1,0 +1,136 @@
+:root {
+  color-scheme: light dark;
+  /* A lit movie screen, so the crew's silhouette stands out. */
+  --bg: #f4efe3;
+  --fg: #1d1a16;
+  --muted: #6b645a;
+  --accent: #c8321f;
+  --panel: #fffaf0;
+  --border: #d9d0bd;
+  --stage: radial-gradient(ellipse at top, #fffdf6, #cfc3a8 85%);
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  line-height: 1.6;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* The theater with the lights down. */
+    --bg: #0d0f17;
+    --fg: #ece6d8;
+    --muted: #a39c8f;
+    --accent: #ff5a45;
+    --panel: #171a26;
+    --border: #2c3044;
+    --stage: radial-gradient(ellipse at top, #4a5578, #0d0f17 80%);
+  }
+
+  /* The crew is a black silhouette, so backlight them on dark pages. */
+  [data-rowsdower-chairs] {
+    filter: drop-shadow(0 0 1px rgb(255 255 255 / 0.9))
+      drop-shadow(0 0 10px rgb(255 240 210 / 0.5));
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  /* Leave room for the crew at the bottom of the page. */
+  padding-bottom: 160px;
+}
+
+header,
+main,
+footer {
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+header {
+  padding-top: 4rem;
+}
+
+h1 {
+  font-size: clamp(3rem, 12vw, 6rem);
+  line-height: 1;
+  margin: 0;
+  letter-spacing: -0.03em;
+  color: var(--accent);
+  
+}
+
+.tagline {
+  font-size: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+h2 {
+  margin-top: 3rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.25rem;
+}
+
+a {
+  color: var(--accent);
+}
+
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.9em;
+}
+
+pre {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1rem;
+  /* Wrap long lines rather than scrolling: hidden scrollbars make clipped code look broken. */
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+button {
+  font: inherit;
+  font-weight: 600;
+  color: #fff;
+  background: var(--accent);
+  border: 0;
+  border-radius: 999px;
+  padding: 0.6rem 1.25rem;
+  cursor: pointer;
+}
+
+button:focus-visible {
+  outline: 3px solid var(--fg);
+  outline-offset: 2px;
+}
+
+figure {
+  margin: 0;
+}
+
+.stage {
+  /* A transform makes this the containing block for the crew's position: fixed. */
+  transform: translateZ(0);
+  overflow: hidden;
+  height: 220px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--stage);
+  display: grid;
+  place-items: start center;
+  padding-top: 2rem;
+  font-style: italic;
+}
+
+footer {
+  margin-top: 4rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
